@@ -122,4 +122,18 @@ public class Counter {
     public void set_angerCount(int count) {angerCount = count;}
     public void set_loveCount(int count) {loveCount = count;}
     public void set_surpriseCount(int count) {surpriseCount = count;}
+
+    public boolean isEmpty() //check if no emotions exist yet
+    {
+        if (joyCount == 0 && fearCount == 0 && angerCount == 0 && loveCount ==0
+                && surpriseCount == 0 && sadCount == 0)
+        {
+            return true;
+        }
+
+        else
+        {
+            return false;
+        }
+    }
 }

@@ -43,21 +43,17 @@ public class MainActivity extends AppCompatActivity {
         counter.set_fearCount(sharedpreferences.getInt("fear", 0));
         counter.set_joyCount(sharedpreferences.getInt("joy", 0));
 
-//        SharedPreferences.Editor editor = sharedpreferences.edit();
-//        editor.clear();
-//        editor.commit();
-
-
     }
 
     @Override
     protected void onResume()
     {
         super.onResume();
+        Counter counter = new Counter(); //will be used to check if emotion list is empty
         Gson gson = new Gson();
 //      Read from sharedpreferences to update the emotionList
         String serializedString = sharedpreferences.getString("listkey","");
-        if (!serializedString.equals("")) {
+        if (!serializedString.equals("") && !counter.isEmpty()) {
             Emotion_List result = gson.fromJson(serializedString, new TypeToken<Emotion_List>() {
             }.getType());
             if (result != null) emotionList = result;
@@ -97,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         emotionList.getEmotionList().clear(); //clear emotion list to prevent errors on startup
         String serializedEmotionList = gson.toJson(emotionList);
 
-        editor.remove("listkey").commit();
+            editor.remove("listkey").commit();
         editor.putString("listkey", serializedEmotionList);
         editor.commit();
 
