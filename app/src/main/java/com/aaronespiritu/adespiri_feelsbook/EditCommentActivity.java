@@ -60,7 +60,7 @@ public class EditCommentActivity extends AppCompatActivity {
         //save the data of the comment and return to history activity
 
         emotionList.organizeEmotions();
-        Toast.makeText(this, emotionList.angerList.toString(), Toast.LENGTH_LONG).show();
+
         Gson gson = new Gson();
         String serializedEmotionList = gson.toJson(emotionList);
         SharedPreferences.Editor editor = sharedpreferences.edit();

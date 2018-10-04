@@ -57,12 +57,14 @@ public class MainActivity extends AppCompatActivity {
         Gson gson = new Gson();
 //      Read from sharedpreferences to update the emotionList
         String serializedString = sharedpreferences.getString("listkey","");
+        if (!serializedString.equals("")) {
+            Emotion_List result = gson.fromJson(serializedString, new TypeToken<Emotion_List>() {
+            }.getType());
+            if (result != null) emotionList = result;
+            emotionList.consolidateEmotions();
 
-        Emotion_List result = gson.fromJson(serializedString, new TypeToken<Emotion_List>(){}.getType());
-        if (result != null) emotionList = result;
-        emotionList.consolidateEmotions();
-
-        if (emotionList != null) updateCurrentEmotion();
+            if (emotionList != null) updateCurrentEmotion();
+        }
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -147,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
         //call counter
         Counter myCounter = new Counter();
         myCounter.add_love();
+        Toast.makeText(this, "Love Emotion Recorded!", Toast.LENGTH_SHORT).show();
 
         //clear text in commentbox
         commentBox.setText("", TextView.BufferType.NORMAL);
@@ -164,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
         //call counter
         Counter myCounter = new Counter();
         myCounter.add_joy();
+        Toast.makeText(this, "Joy Emotion Recorded!", Toast.LENGTH_SHORT).show();
 
         //clear text in commentbox
         commentBox.setText("", TextView.BufferType.NORMAL);
@@ -180,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
         //call counter
         Counter myCounter = new Counter();
         myCounter.add_sad();
+        Toast.makeText(this, "Sad Emotion Recorded!", Toast.LENGTH_SHORT).show();
 
         //clear text in commentbox
         commentBox.setText("", TextView.BufferType.NORMAL);
@@ -196,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
         //call counter
         Counter myCounter = new Counter();
         myCounter.add_anger();
+        Toast.makeText(this, "Anger Emotion Recorded!", Toast.LENGTH_SHORT).show();
 
         //clear text in commentbox
         commentBox.setText("", TextView.BufferType.NORMAL);
@@ -212,6 +218,7 @@ public class MainActivity extends AppCompatActivity {
         //call counter
         Counter myCounter = new Counter();
         myCounter.add_fear();
+        Toast.makeText(this, "Fear Emotion Recorded!", Toast.LENGTH_SHORT).show();
 
         //clear text in commentbox
         commentBox.setText("", TextView.BufferType.NORMAL);
@@ -228,6 +235,7 @@ public class MainActivity extends AppCompatActivity {
         //call counter
         Counter myCounter = new Counter();
         myCounter.add_surprise();
+        Toast.makeText(this, "Surprise Emotion Recorded!", Toast.LENGTH_SHORT).show();
 
         //clear text in commentbox
         commentBox.setText("", TextView.BufferType.NORMAL);
